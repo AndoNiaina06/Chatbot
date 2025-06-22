@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use Illuminate\Support\Facades\Http;
 
 class ChatController extends Controller
 {
@@ -16,6 +17,18 @@ class ChatController extends Controller
         return Inertia::render('chat');
     }
 
+    public function handleMessage(Request $request){
+        $message = $request->input("message");
+
+        $response = Http::post('https://openrouter.ai/api/v1/chat/completions', [
+//            'model' => 'openai/gpt-3.5-turbo',
+            'messages' => [
+                ['role' => 'user', 'content' => $message]
+            ]
+        ]);
+        dd($response);
+        //return $response;
+    }
     /**
      * Show the form for creating a new resource.
      */

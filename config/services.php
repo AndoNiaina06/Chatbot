@@ -34,5 +34,8 @@ return [
             'channel' => env('SLACK_BOT_USER_DEFAULT_CHANNEL'),
         ],
     ],
+    'openai' => [
+        'service' => env('OPENAI_SECRET'),
+    ],
 
 ];

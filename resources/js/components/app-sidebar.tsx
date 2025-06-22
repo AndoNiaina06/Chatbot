@@ -22,7 +22,7 @@ const mainNavItems: NavItem[] = [
         icon: LayoutGrid,
     }, {
         title: 'chatbot',
-        href: 'chatbot',
+        href: '/chatbot',
         icon: LucideMessageCircleQuestion
     }
 ];

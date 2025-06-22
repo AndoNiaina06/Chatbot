@@ -20,13 +20,16 @@ class ChatController extends Controller
     public function handleMessage(Request $request){
         $message = $request->input("message");
 
-        $response = Http::post('https://openrouter.ai/api/v1/chat/completions', [
-//            'model' => 'openai/gpt-3.5-turbo',
+        $response = Http::withToken(config('services.openrouter.key'))->post('https://openrouter.ai/api/v1/chat/completions', [
+            'model' => 'openai/gpt-3.5-turbo-1106',
             'messages' => [
-                ['role' => 'user', 'content' => $message]
+                [
+                    'role' => 'user',
+                    'content' => $message
+                ]
             ]
-        ]);
-        dd($response);
+        ])->json();
+        dd($response[]);
         //return $response;
     }
     /**
